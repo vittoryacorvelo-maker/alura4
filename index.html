@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentor de Carreiras com IA | Start by Alura</title>
+<style>
+:root {
+--marrom-escuro: #2C1810;
+--marrom-principal: #4E342E;
+--marrom-medio: #6D4C41;
+--marrom-claro: #A1887F;
+--dourado-suave: #C8A97E;
+--creme-fundo: #F8F5F2;
+--branco-cartao: #FFFFFF;
+--texto-escuro: #231712;
+--texto-suave: #5D4037;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+background-color: var(--creme-fundo);
+color: var(--texto-escuro);
+line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-principal));
+color: #FFF;
+padding: 3rem 1.5rem;
+text-align: center;
+border-bottom: 5px solid var(--dourado-suave);
+}
+
+header .badge {
+display: inline-block;
+background-color: rgba(200, 169, 126, 0.2);
+color: var(--dourado-suave);
+border: 1px solid var(--dourado-suave);
+padding: 0.3rem 1rem;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+letter-spacing: 1px;
+margin-bottom: 1rem;
+text-transform: uppercase;
+}
+
+header h1 {
+font-size: 2.3rem;
+margin-bottom: 0.5rem;
+}
+
+header p {
+max-width: 700px;
+margin: 0 auto;
+color: #E0D6D1;
+font-size: 1.05rem;
+}
+
+/* Container Principal */
+.container {
+max-width: 1000px;
+margin: 2.5rem auto;
+padding: 0 1.5rem;
+}
+
+/* Cards de Resumo das Aulas */
+.grid-conceitos {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1.2rem;
+margin-bottom: 2.5rem;
+}
+
+.card {
+background: var(--branco-cartao);
+border-radius: 10px;
+padding: 1.5rem;
+box-shadow: 0 4px 15px rgba(44, 24, 16, 0.08);
+border-top: 4px solid var(--marrom-medio);
+transition: transform 0.2s ease;
+}
+
+.card:hover {
+transform: translateY(-4px);
+}
+
+.card h3 {
+color: var(--marrom-principal);
+font-size: 1.1rem;
+margin-bottom: 0.5rem;
+}
+
+.card p {
+font-size: 0.92rem;
+color: var(--texto-suave);
+}
+
+/* Seção do Simulador Interativo */
+.secao-box {
+background: var(--branco-cartao);
+border-radius: 12px;
+padding: 2rem;
+box-shadow: 0 6px 20px rgba(44, 24, 16, 0.08);
+margin-bottom: 2.5rem;
+border: 1px solid #E6DCD6;
+}
+
+.secao-box h2 {
+color: var(--marrom-escuro);
+margin-bottom: 0.5rem;
+font-size: 1.5rem;
+border-bottom: 2px solid var(--creme-fundo);
+padding-bottom: 0.5rem;
+}
+
+.secao-box > p {
+color: var(--texto-suave);
+margin-bottom: 1.5rem;
+}
+
+/* Chat Simulado */
+.chat-window {
+background-color: #FAF7F5;
+border: 1px solid #D7CCC8;
+border-radius: 8px;
+padding: 1.2rem;
+height: 260px;
+overflow-y: auto;
+margin-bottom: 1rem;
+display: flex;
+flex-direction: column;
+gap: 0.8rem;
+}
+
+.msg {
+padding: 0.8rem 1rem;
+border-radius: 8px;
+max-width: 82%;
+font-size: 0.95rem;
+}
+
+.msg-bot {
+background-color: var(--marrom-principal);
+color: #FFF;
+align-self: flex-start;
+border-bottom-left-radius: 2px;
+}
+
+.msg-user {
+background-color: #E6D8D0;
+color: var(--marrom-escuro);
+align-self: flex-end;
+border-bottom-right-radius: 2px;
+font-weight: 500;
+}
+
+.chat-input-area {
+display: flex;
+gap: 0.8rem;
+}
+
+.chat-input-area input {
+flex: 1;
+padding: 0.85rem 1rem;
+border: 1px solid var(--marrom-claro);
+border-radius: 8px;
+font-size: 0.95rem;
+outline: none;
+}
+
+.chat-input-area input:focus {
+border-color: var(--marrom-principal);
+}
+
+.btn {
+background-color: var(--marrom-principal);
+color: #FFF;
+border: none;
+padding: 0.85rem 1.5rem;
+border-radius: 8px;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.2s;
+}
+
+.btn:hover {
+background-color: var(--marrom-escuro);
+}
+
+/* Bloco de Código Python */
+.code-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: var(--marrom-escuro);
+color: var(--dourado-suave);
+padding: 0.8rem 1.2rem;
+border-radius: 8px 8px 0 0;
+font-size: 0.9rem;
+font-weight: 600;
+}
+
+.btn-copy {
+background-color: var(--marrom-medio);
+color: #FFF;
+border: 1px solid var(--dourado-suave);
+padding: 0.4rem 0.9rem;
+border-radius: 5px;
+font-size: 0.8rem;
+cursor: pointer;
+}
+
+.btn-copy:hover {
+background-color: var(--dourado-suave);
+color: var(--marrom-escuro);
+}
+
+pre {
+background-color: #1E110C;
+color: #F3E5DC;
+padding: 1.5rem;
+border-radius: 0 0 8px 8px;
+overflow-x: auto;
+font-family: 'Consolas', 'Courier New', monospace;
+font-size: 0.9rem;
+line-height: 1.5;
+}
+
+/* Passos para entrega */
+.passos-lista {
+padding-left: 1.2rem;
+color: var(--texto-escuro);
+}
+
+.passos-lista li {
+margin-bottom: 0.6rem;
+}
+
+footer {
+text-align: center;
+padding: 2rem;
+color: var(--texto-suave);
+font-size: 0.9rem;
+border-top: 1px solid #E0D6D1;
+}
+</style>
+</head>
+<body>
+
+<header>
+<span class="badge">Start by Alura • Unidade de IA</span>
+<h1>Mentor de Carreiras com Inteligência Artificial</h1>
+<p>Projeto prático desenvolvido com Python, API do Google Gemini, System Prompts, GuardRails e boas práticas de segurança de chaves.</p>
+</header>
+
+<div class="container">
+
+<!
+-Pilares vistos nas 4 aulas da segunda imagem -->
+<div class="grid-conceitos">
+<div class="card">
+<h3>1. IA no Colab</h3>
+<p>Integração do SDK oficial <strong>google-genai</strong> em ambiente Google Colab para gerar respostas inteligentes.</p>
+</div>
+<div class="card">
+<h3>2. Segurança de API</h3>
+<p>Proteção da <strong>GEMINI_API_KEY</strong> utilizando o gerenciador de segredos (<em>Userdata</em>) do Colab sem expor dados no código.</p>
+</div>
+<div class="card">
+<h3>3. System Prompt & GuardRails</h3>
+<p>Definição de persona profissional e regras rígidas para manter o foco exclusivo em orientação de carreira.</p>
+</div>
+<div class="card">
+<h3>4. Controle de Tokens</h3>
+<p>Limitação de <code>max_output_tokens</code> e histórico enxuto para otimizar custos e consumo de processamento.</p>
+</div>
+</div>
+<!
+-Demonstração Interativa -->
+<section class="secao-box">
+<h2>Demonstração do Mentor (GuardRails Ativos)</h2>
+<p>Teste abaixo como o mentor responde a dúvidas de carreira e bloqueia assuntos fora do escopo:</p>
+
+<div class="chat-window" id="chatWindow">
+<div class="msg msg-bot">
+Olá! Sou seu <strong>Mentor de Carreiras</strong>. Posso te ajudar a escolher uma área na tecnologia, montar seu currículo ou preparar um plano de estudos. Qual é o seu objetivo hoje?
+</div>
+</div>
+<div class="chat-input-area">
+<input type="text" id="userInput" placeholder="Ex: Quero começar na área de dados, o que estudar?" onkeypress="if(event.key==='Enter') enviarMensagem()">
+<button class="btn" onclick="enviarMensagem()">Enviar</button>
+</div>
+</section>
+
+<!
+-Código Python pronto para o Google Colab -->
+<section class="secao-box">
+<h2>Código Python para o Google Colab</h2>
+<p>Copie o código abaixo e cole em uma célula do seu <strong>Google Colab</strong> para gerar o link oficial de entrega da plataforma:</p>
+<div class="code-header">
+<span>mentor_carreiras.py (Google Colab)</span>
+<button class="btn-copy" onclick="copiarCodigo()">Copiar Código</button>
+</div>
+<pre id="codigoPython"># 1. Instalação da biblioteca oficial do Google Gemini
+!pip install -q -U google-genai
+
+from google import genai
+from google.genai import types
+from google.colab import userdata
